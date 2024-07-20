@@ -21,10 +21,10 @@ jobs:
     - name: Send MatterMost Notification
       run: npx mattermost-ctrf results ctrf-report.json
       env:
-        MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+        MATTERMOST_WEBHOOK_URL: ${{ vars.MATTERMOST_WEBHOOK_URL }}
         NODE_TLS_REJECT_UNAUTHORIZED: 0
     - name: Send Slack Notification
       run: npx mattermost-ctrf flaky ctrf-report.json
       env:
-        MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+        MATTERMOST_WEBHOOK_URL: ${{ vars.MATTERMOST_WEBHOOK_URL }}
         NODE_TLS_REJECT_UNAUTHORIZED: 0
