@@ -4,13 +4,16 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"build": "tsc -p .",
+		"build:check": "tsc -p . -noEmit",
+		"build:watch": "tsc -p . --watch",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "biome lint --write . --unsafe",
 		"lint:check": "biome lint .",
 		"format": "biome format --write .",
 		"format:check": "biome format .",
 		"check": "biome check .",
-		"all": "npm run check"
+		"all": "npm run build && npm run check"
 	},
 	"bin": {
 		"mattermost-ctrf": "./dist/cli.js"
@@ -20,6 +23,9 @@
 		"dist/",
 		"README.md"
 	],
+	"engines": {
+		"node": ">=20.19.0"
+	},
 	"author": "Matthew Thomas",
 	"license": "MIT",
 	"dependencies": {

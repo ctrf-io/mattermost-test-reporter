@@ -8,7 +8,7 @@ export const formatResultsMessage = (ctrf: CtrfReport): object => {
 	const pendingTests = summary.pending;
 	const otherTests = summary.other;
 
-	let title = "CTRF Test Results";
+	const title = "CTRF Test Results";
 	let missingEnvProperties: string[] = [];
 
 	let buildInfo = "**Build:** No build information provided";
@@ -83,7 +83,7 @@ export const formatFlakyTestsMessage = (ctrf: CtrfReport): object | null => {
 		return null;
 	}
 
-	let title = "CTRF Flaky Test Report";
+	const title = "CTRF Flaky Test Report";
 	let missingEnvProperties: string[] = [];
 
 	let buildInfo = "**Build:** No build information provided";
