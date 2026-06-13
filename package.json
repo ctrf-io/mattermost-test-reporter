@@ -30,7 +30,7 @@
 	"bin": {
 		"mattermost-ctrf": "./dist/cli.js"
 	},
-	"repository": "github:ctrf-io/mattermost-ctrf",
+	"repository": "github:ctrf-io/mattermost-test-reporter",
 	"files": [
 		"dist/",
 		"README.md"
