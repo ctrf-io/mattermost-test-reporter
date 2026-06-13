@@ -1,6 +1,6 @@
 {
 	"name": "mattermost-ctrf",
-	"version": "0.0.2",
+	"version": "0.0.3-next.0",
 	"description": "",
 	"type": "module",
 	"main": "./dist/cli.js",
