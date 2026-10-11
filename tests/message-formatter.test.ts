@@ -1,3 +1,7 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { parseCtrfFile } from "../src/ctrf-parser";
 import type { CtrfReport } from "../types/ctrf";
 import {
 	formatFailedTestsMessage,
@@ -45,7 +49,64 @@ const createReport = (): CtrfReport =>
 
 describe("message formatter", () => {
 	it("formats Mattermost result messages", () => {
-		const message = formatResultsMessage(createReport()) as { text: string };
+		const original = createReport();
+		const report = structuredClone(original);
+		Object.assign(report, { reportId: "report", runId: "run" });
+		report.results.environment = {
+			...report.results.environment,
+			shardId: "one",
+		};
+		Object.assign(report.results.tests[1], {
+			testId: "logical",
+			executionId: "execution",
+			attemptId: "final-attempt",
+			retryAttempts: [
+				{
+					attempt: 1,
+					attemptId: "prior-attempt",
+					status: "failed",
+					duration: 1,
+					attachments: [
+						{
+							name: "log",
+							path: "prior.txt",
+							contentType: "text/plain",
+							attachmentId: "prior-ref",
+						},
+					],
+				},
+			],
+			attachments: [
+				{
+					name: "log",
+					path: "final.txt",
+					contentType: "text/plain",
+					attachmentId: "final-ref",
+				},
+			],
+		});
+		const directory = fs.mkdtempSync(
+			path.join(os.tmpdir(), "mattermost-parse-"),
+		);
+		let parsed: CtrfReport;
+		try {
+			const file = path.join(directory, "report.json");
+			fs.writeFileSync(file, JSON.stringify(report));
+			parsed = parseCtrfFile(file);
+			expect(parsed).toEqual(report);
+		} finally {
+			fs.rmSync(directory, { recursive: true, force: true });
+		}
+		const before = structuredClone(parsed);
+		const message = formatResultsMessage(parsed) as { text: string };
+		expect(message).toEqual(formatResultsMessage(original));
+		expect(formatFailedTestsMessage(parsed)).toEqual(
+			formatFailedTestsMessage(original),
+		);
+		expect(formatFlakyTestsMessage(parsed)).toEqual(
+			formatFlakyTestsMessage(original),
+		);
+		expect(parsed).toEqual(before);
 
 		expect(message.text).toContain("CTRF Test Results");
 		expect(message.text).toContain("1 failed tests");
