@@ -31,7 +31,7 @@ Explore more <a href="https://www.ctrf.io/integrations">integrations</a>
 - **Send Test Results to MatterMost**: Automatically send test results to a MatterMost channel.
 - **Send Flaky Test Details to MatterMost**: Automatically send flaky test details to a MatterMost channel.
 - **Conditional Notifications**: Use the `--onFailOnly` option to send notifications only if tests fail.
-- 
+-
 ![Example view](assets/results.png)
 
 ## Setup
@@ -44,7 +44,7 @@ Use [junit-to-ctrf](https://github.com/ctrf-io/junit-to-ctrf) to convert a JUnit
 
 ### Create a MatterMost Incoming Webhook
 
-Go to the [MatterMost API: Incoming Webhooks](https://developers.mattermost.com/integrate/webhooks/incoming/) page and follows instructions to setup an incoming webhook. 
+Go to the [MatterMost API: Incoming Webhooks](https://developers.mattermost.com/integrate/webhooks/incoming/) page and follows instructions to setup an incoming webhook.
 
 
 ### Set the Environment Variable
