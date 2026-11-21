@@ -2,7 +2,6 @@
 
 > Send MatterMost message with test result from popular testing frameworks
 
-
 <div align="center">
 <div style="padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border: 1px solid #30363d;">
 <span style="font-size: 23px;">💚</span>
@@ -45,7 +44,6 @@ Use [junit-to-ctrf](https://github.com/ctrf-io/junit-to-ctrf) to convert a JUnit
 ### Create a MatterMost Incoming Webhook
 
 Go to the [MatterMost API: Incoming Webhooks](https://developers.mattermost.com/integrate/webhooks/incoming/) page and follows instructions to setup an incoming webhook.
-
 
 ### Set the Environment Variable
 
